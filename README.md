@@ -5,3 +5,4 @@ Simple Maven Project
 
 Webhook added
 Add a new change
+New changes
