@@ -5,3 +5,4 @@ Simple Maven Project
 
 
 something has changed in my repository
+going well
