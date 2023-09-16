@@ -6,9 +6,7 @@ add some few things
 Webhook added
 Add a new change
 
-New goal learn how to merge
-=======
-New changes
+Trigger another job from here
 
 Make webhook trigger the job
 
