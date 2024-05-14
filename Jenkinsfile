@@ -5,6 +5,11 @@ pipeline{
     }
 
     stages{
+        stage('Checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/kserge2001/maven-test.git'
+            }
+        }
         stage("clean"){
             steps{
                 sh 'mvn clean install package'
