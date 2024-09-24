@@ -5,17 +5,33 @@ on:
     types: [opened]
 
 jobs:
-  comment_witj_action:
+ name: Welcome New Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
     runs-on: ubuntu-latest
     steps:
-    - name: Comment on issue
-      uses: actions/github-script@0.9.0
+    - name: Post Welcome Comment
+      uses: actions/github-script@v5 # Pinned version
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          github.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: 'Thanks for opening this issue!'
-          })
+          if (context.payload.issue.labels.some(label => label.name === 'bug')) {
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for reporting this bug! Please provide more details so we can investigate further.'
+            });
+          } else {
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thanks for opening this issue! We appreciate your contribution.'
+            });
+          }
